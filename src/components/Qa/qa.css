@@ -1,0 +1,32 @@
+.questionLine {
+  background: var(--color-primary);
+  height: 4px;
+}
+
+.questionButton:hover .questionLine {
+  animation: growLine 0.1s ease-in forwards;
+}
+
+@keyframes growLine {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.answerPopover {
+  animation: fadeIn 0.1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
