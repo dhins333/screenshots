@@ -3,6 +3,9 @@ export const config = {
 }
 
 export const middleware = (req) => {
+
+  console.log('here')
+
   return Response.json({
     message: 'Hello from middleware'
   })

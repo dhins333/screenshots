@@ -1,0 +1,17 @@
+.startButtonLoadingText::after {
+  position: absolute;
+  content: '...';
+  animation: ellipsesLoading 2s ease-in-out infinite;
+}
+
+@keyframes ellipsesLoading {
+  0% {
+    content: '.'
+  }
+  50% {
+    content: '..'
+  }
+  100% {
+    content: '...';
+  }
+}

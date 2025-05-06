@@ -11,7 +11,7 @@ const Button = (props) => {
   const { buttonProps } = useButton(props, ref)
 
   return (
-    <button {...buttonProps} ref={ref} className='bg-primary p-4 relative active:top-2 cursor-pointer shadow-button'>
+    <button {...buttonProps} ref={ref} className='bg-primary p-4 relative active:top-2 cursor-pointer shadow-button disabled:bg-background disabled:shadow-none disabled:static'>
       {children}
     </button>
   )
