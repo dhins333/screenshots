@@ -4,16 +4,22 @@ import { useState, Suspense } from 'react'
 import Typography from '@/src/components/Typography'
 import StartButton from '@/src/components/StartButton'
 import GamesLoadingFallback from './GamesLoadingFallback'
+import Carousel from '../Carousel'
 
-const HomeContent = () => {
-  const [gamesData, setGamesData] = useState(null)
+const HomeContent = (props) => {
+  const { gamesPromise } = props
 
-  if (gamesData) return <section><Typography>Carousel</Typography></section>
+  const [showCarousel, setShowCarousel] = useState(false)
 
-  return (
-    <Suspense fallback={<GamesLoadingFallback />}>
-      <StartButton setGamesData={setGamesData}/>
-    </Suspense>
+  return ( 
+  <>
+    {!showCarousel && <StartButton setShowCarousel={setShowCarousel} />}
+    {showCarousel && 
+      <Suspense fallback={<GamesLoadingFallback />}>
+        <Carousel gamesPromise={gamesPromise} setShowCarousel={setShowCarousel} />
+      </Suspense>
+    }
+    </>
   )
 }
 
