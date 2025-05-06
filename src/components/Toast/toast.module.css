@@ -1,0 +1,25 @@
+.toastSlideIn {
+  animation: slideInFromRight 0.3s ease-in-out;
+}
+
+.toastSlideOut {
+  animation: slideOutToRight 0.3s ease-in-out;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(1000px);
+  }
+  to {
+    transform: translateX(0px);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0px);
+  }
+  to {
+    transform: translateX(1000px);
+  }
+}

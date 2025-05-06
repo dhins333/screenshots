@@ -2,13 +2,12 @@
 
 @theme {
   /* Colors */
-  --color-text: #1B0917;
-  --color-background: #FBF4F9;
-  --color-background2: #FFFFFF;
-  --color-primary: #EE7CCA;
-  --color-secondary: #D99295;
-  --color-accent: #CF8977;
-  --color-gradient: linear-gradient(90deg, #EE7CCA 0%, #CF8977 100%);
+  --color-background: #000000;
+  --color-primary: #FFFFFF;
+  --color-text: #FFFFFF;
+  --color-text2: #000000;
+  --color-accent: #8D8D8F;
+  --color-alert: oklch(70.4% 0.191 22.216);
 
   /* Fonts */
   --font-noto-sans: 'Noto Sans', sans-serif;
@@ -22,8 +21,24 @@
   --text-3xl: 2.37rem;
   --text-4xl: 1.78rem;
   --text-5xl: 1.33rem;  
+
+  /* Border radii */
+  --radius-5xl: 3rem;
+
+  /* Constant Sizes */
+  --spacing-cover-height: 352px;
+  --spacing-cover-width: 264px;
 }
 
 @theme inline {
-  --bg-gradient: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+  --shadow-button: 7px 7px 1px 7px var(--color-accent);
+  --shadow-icon-button: 3px 2px 1px 1px var(--tw-shadow-color, var(--color-accent));
+  --shadow-icon-button-alert: 3px 2px 1px 1px var(--tw-shadow-color, var(--color-alert));
 }
+
+.lucide {
+  background-color: var(--color-primary);
+  border-radius: var(--radius-3xl);
+}
+
+

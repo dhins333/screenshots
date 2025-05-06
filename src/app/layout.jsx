@@ -1,8 +1,9 @@
 import { Noto_Sans } from 'next/font/google'
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/src/lib/utils";
 
 import "./globals.css";
+import GlobalToastRegion from '../components/Toast/Toast';
 
 const notoSans = Noto_Sans({
   subsets: ["latin"],
@@ -17,8 +18,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={cn('bg-background h-screen flex flex-col', notoSans.variable)}>
+      <body className={cn('bg-black h-screen flex flex-col', notoSans.variable)}>
         {children}
+        <GlobalToastRegion />
       </body>
     </html>
   );

@@ -1,16 +1,19 @@
-import Header from "@/components/Header"
-import Qa from "@/components/Qa"
-import Typography, { TYPOGRAPHY_TYPES } from "@/components/Typography"
+import Header from "@/src/components/Header"
+import StartButton from "@/src/components/StartButton"
+import Typography, { TYPOGRAPHY_TYPES } from "@/src/components/Typography"
+import { toastQueue } from "../components/Toast/Toast"
 
 const Home = () => {
   return (
       <>
-      <Header renderRightContent={() => <Qa />} />
-      <main className="grow flex flex-col items-center justify-center">
-        <Typography type={TYPOGRAPHY_TYPES.hero} classes='--text-gradient'>Video Game Screenshots</Typography>
+      <Header />
+      <main className="grow flex flex-col items-center justify-center gap-8">
+        <Typography type={TYPOGRAPHY_TYPES.hero}>Video Game Screenshots</Typography>
+        <StartButton />
       </main>
       </>
   )
 }
+
 
 export default Home

@@ -8,7 +8,7 @@ const Header = (props) => {
   const { renderRightContent } = props
 
   return (
-    <header className={'flex items-start justify-between pt-8 pr-8 pl-8'}>
+    <header className={'flex items-start justify-between fixed top-8 left-8 right-8'}>
       <Link href="/">
         <Image 
           src={logo}
