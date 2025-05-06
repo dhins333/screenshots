@@ -1,25 +1,17 @@
-import { toastQueue } from "../components/Toast/Toast"
-
 const BASE = '/api'
 
-export const api = async (url, params) => {
-  try {
-    url = `${BASE}/${url}${params ? `?${new URLSearchParams(params).toString()}` : ''}`
-  
-    const response = await fetch(url, {
-      headers: {
-        'content-type': 'application/json'
-      }
-    })
+export const api = async (url, params) => {  
+  url = `${BASE}/${url}${params ? `?${new URLSearchParams(params).toString()}` : ''}`
 
-    if (!response.ok) throw new Error()
+  const response = await fetch(url, {
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
 
-    const data = await response.json()
+  if (!response.ok) throw new Error()
 
-    return data
-  }
-  catch {
-    toastQueue.add('Some Error Occurred', { timeout: 5000 })
-    return null
-  }
+  const data = await response.json()
+
+  return data
 }
