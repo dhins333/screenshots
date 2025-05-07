@@ -1,24 +1,25 @@
 'use client'
 
-import { useState, Suspense } from 'react'
+import { useState, useTransition } from 'react'
 import StartButton from '@/src/components/StartButton'
 import Carousel from '../Carousel'
 import Loading from '../Loading'
 
 const HomeContent = (props) => {
-  const { gamesPromise } = props
+  const { getGames } = props
 
-  const [showCarousel, setShowCarousel] = useState(false)
+  const [gamesData, setGamesData] = useState(null)
+  const [isGamesLoading, startGamesTransition] = useTransition()
+
+  if (isGamesLoading) {
+    return <Loading />
+  }
 
   return ( 
   <>
-    {!showCarousel && <StartButton setShowCarousel={setShowCarousel} />}
-    {showCarousel && 
-      <Suspense fallback={<Loading />}>
-        <Carousel gamesPromise={gamesPromise} setShowCarousel={setShowCarousel} />
-      </Suspense>
-    }
-    </>
+    {!gamesData && <StartButton getGames={getGames} setGamesData={setGamesData} startGamesTransition={startGamesTransition} />}
+    {gamesData && <Carousel data={gamesData} />}
+  </>
   )
 }
 

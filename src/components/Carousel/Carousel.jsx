@@ -15,27 +15,11 @@ import Icon from "../Icon";
 import { cn } from "@/src/lib/utils";
 
 const Carousel = (props) => {
-  const { gamesPromise, setShowCarousel } = props
+  const { data } = props
 
   const [swiperInstance, setSwiperInstance] = useState(null)
   const [isSwiperAtBeginning, setIsSwiperAtBeginning] = useState(true)
   const [isSwiperAtEnd, setIsSwiperAtEnd] = useState(false)
-
-  const errorShown = useRef(false)
-
-  const response = use(gamesPromise)
-
-  useEffect(() => {
-    if (response.error && !errorShown.current) {
-      setShowCarousel(false)
-      toastQueue.add(response.error, {
-        timeout: 5000
-      })
-    errorShown.current = true
-    }
-  }, [response])
-
-  if (response.error) return null
 
   const handleSwiperControlButtonsPress = (isPrev) => {
     return () => {
@@ -97,7 +81,7 @@ const Carousel = (props) => {
       }}
     >
       {
-        response.data.map((game) => {
+        data.map((game) => {
           return (
             <SwiperSlide tag='li'  key={game.documentId} className='swiper-no-swiping'>
                 <GameCover game={game} />
