@@ -45,7 +45,7 @@ const Typography = (props) => {
       return <h5 className={cn(' text-5xl font-bold text-text', classes)} {...restProps}>{children}</h5>
 
     case TYPOGRAPHY_TYPES.hero:
-      return <h1 className={cn('font-press-start text-3xl font-normal text-text')} {...restProps}>{children}</h1>
+      return <h1 className={cn('font-press-start text-3xl font-normal text-text', classes)} {...restProps}>{children}</h1>
 
     default:
       return <p className={cn('text-base font-normal text-text', pressStart2P.className, classes)}{...restProps}>{children}</p>

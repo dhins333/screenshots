@@ -26,8 +26,30 @@
   --radius-5xl: 3rem;
 
   /* Constant Sizes */
-  --spacing-cover-height: 352px;
-  --spacing-cover-width: 264px;
+  --spacing-cover-height: calc(352px * 0.8);
+  --spacing-cover-width: calc(264px * 0.8);
+
+  /* Animations */
+  --animate-slide-in-right: slideInFromRight 1s ease-in-out forwards;
+  --animate-fade-in: fadeIn 1s ease-in-out forwards;
+
+  @keyframes slideInFromRight {
+    from {
+      transform: translateX(1000px);
+    }
+    to {
+      transform: translateX(0px);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 @theme inline {

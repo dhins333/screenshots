@@ -1,13 +1,12 @@
 .swiper {
   width: 100%;
-  /* height: var(--spacing-cover-height); */
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  animation: var(--animate-slide-in-right);
 }
 
 .swiper-slide {
   width: var(--spacing-cover-width);
   height: var(--spacing-cover-height);
-  user-select: none;
   border-radius: var(--radius-2xl);
 }

@@ -1,32 +1,10 @@
-.front {
-  transform: translateZ(100px);
-  background: red;
+.gameCover {
+  box-shadow: var(--color-primary) 0px 0px 14px 2px;
+  transition: all 0.3s ease-in-out;
+  transform-style: preserve-3d
 }
 
-.back {
-  transform: rotateX(-180deg) translateZ(-36px) ;
-  background: blue;
-}
-
-.left {
-  transform: rotateY(-90deg) translateZ(32px) translateX(68px);
-  background: green;
-}
-
-.right {
-  transform: rotateY(90deg) translateZ(232px) translateX(-68px);
-  background: yellow;
-}
-
-.cube {
-  animation: spin 5s infinite linear;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotateY(0deg);
-  }
-  100% {
-    transform: rotateY(360deg);
-  }
+.gameCover:hover {
+  box-shadow: var(--color-primary) 0px 0px 10px 7px;
+  transform: translateZ(100px) rotateX(-10deg) rotateY(10deg);
 }

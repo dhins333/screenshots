@@ -13,10 +13,12 @@ export const getGames = async () => {
       fields: ['documentId', 'name', 'coverBlur', 'dominantColor'],
       populate: {
         cover: {
-          fields: ['documentId', 'url']
+          fields: ['url']
         }
       }
     })
+
+    console.log('Games Fetched')
 
     return games
   }
@@ -24,5 +26,41 @@ export const getGames = async () => {
    return {
     error: 'Fetching Games Failed'
    }
+  }
+}
+
+export const getScreenshots = async (id) => {
+  try {
+    const screenshots = await gamesCollection.findOne(id, {
+      fields: ['documentId', 'name', 'coverBlur', 'dominantColor'],
+      populate: {
+        cover: {
+          fields: ['url']
+        },
+        logo: {
+          fields: ['url']
+        },
+        background: {
+          fields: ['url']
+        },
+        screenshots: {
+          fields: ['documentId', 'title', 'imageBlur'],
+          populate: {
+            thumb: {
+              fields: ['url']
+            }
+          }
+        }
+      }
+    })
+
+    console.log('Screenshots Fetched')
+
+    return screenshots
+  }
+  catch {
+    return {
+      error: 'Fetching Screenshots Failed'
+    }
   }
 }

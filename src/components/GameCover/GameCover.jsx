@@ -1,25 +1,27 @@
-import { cn } from '@/src/lib/utils'
+import Image from "next/image"
+import { SPACING } from "@/src/lib/spacing";
+import { useState } from "react";
 
-import {
-  front,
-  back,
-  left,
-  right,
-  cube
-} from './gameCover.module.css'
+import { gameCover } from './gameCover.module.css'
+import { cn } from "@/src/lib/utils";
+import Link from "next/link";
 
-const GameCover = () => {
+const GameCover = (props) => {
+  const { game } = props
+  
   return (
-    <article>
-      <div className="perspective-distant h-cover-height w-cover-width">
-        <div className={cn("h-full w-full transform-3d bg-transparent", cube)}>
-          <div className={cn("absolute h-full w-full", front)}>Front</div>
-          <div className={cn("absolute h-full w-full", back)}>Back</div>
-          <div className={cn("absolute h-full w-16", left)}>Left</div>
-          <div className={cn("absolute h-full w-16", right)}>Right</div>
-        </div>
+    <Link href={`/game/${game.documentId}`} className="perspective-distant">
+      <div className="perspective-midrange">
+      <Image 
+        src={game.cover.url}
+        width={SPACING.spacingCoverWidth}
+        height={SPACING.spacingCoverHeight}
+        alt={game.name}
+        placeholder={game.coverBlur}
+        className={cn('rounded-2xl', gameCover)}
+      />
       </div>
-    </article>
+      </Link>
   )
 }
 

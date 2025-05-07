@@ -9,9 +9,17 @@ import 'swiper/css/pagination';
 
 import './carousel.css'
 import { SPACING } from "@/src/lib/spacing";
+import GameCover from "../GameCover";
+import IconButton from "../IconButton";
+import Icon from "../Icon";
+import { cn } from "@/src/lib/utils";
 
 const Carousel = (props) => {
   const { gamesPromise, setShowCarousel } = props
+
+  const [swiperInstance, setSwiperInstance] = useState(null)
+  const [isSwiperAtBeginning, setIsSwiperAtBeginning] = useState(true)
+  const [isSwiperAtEnd, setIsSwiperAtEnd] = useState(false)
 
   const errorShown = useRef(false)
 
@@ -29,35 +37,77 @@ const Carousel = (props) => {
 
   if (response.error) return null
 
-  console.log(response)
+  const handleSwiperControlButtonsPress = (isPrev) => {
+    return () => {
+      if (isPrev) {
+        swiperInstance.slidePrev()
+      }
+      else {
+        swiperInstance.slideNext()
+      }
+    }
+  }
+  
+  const renderSwiperControls = () => {
+    return (
+      <section className='flex gap-20 animate-fade-in'>
+        <IconButton iconProps={{
+          name: 'arrow-left',
+          size: 48
+        }} buttonClasses={cn({
+         'invisible' : isSwiperAtBeginning,
+        })} 
+        onPress={handleSwiperControlButtonsPress(true)}
+        />
+        <IconButton iconProps={{
+          name: 'arrow-right',
+          size: 48
+        }} buttonClasses={cn({
+          'invisible' : isSwiperAtEnd,
+         })}
+         onPress={handleSwiperControlButtonsPress(false)}
+         />
+      </section>
+    )
+  }
 
   return (
+    <>
     <Swiper 
       slidesPerView='auto'
       centeredSlides={true}
       tag='ul'
       spaceBetween={48}
+      noSwiping={true}
+      onSwiper={(swiper) => { setSwiperInstance(swiper) }}
+      onSlideChange={(swiper) => {
+        if (swiper.isBeginning) {
+          setIsSwiperAtBeginning(true)
+        }
+        else {
+          setIsSwiperAtBeginning(false)
+        }
+
+        if (swiper.isEnd) {
+          setIsSwiperAtEnd(true)
+        }
+        else {
+          setIsSwiperAtEnd(false)
+        }
+      }}
     >
       {
         response.data.map((game) => {
           return (
-            <SwiperSlide tag='li'  key={game.documentId}>
-              <Image 
-                src={game.cover.url}
-                width={SPACING.spacingCoverWidth}
-                height={SPACING.spacingCoverHeight}
-                alt={game.name}
-                placeholder={game.coverBlur}
-                className='rounded-2xl'
-                style={{
-                  boxShadow: `${game.dominantColor} 0px 0px 14px 2px`
-                }}
-              />
+            <SwiperSlide tag='li'  key={game.documentId} className='swiper-no-swiping'>
+                <GameCover game={game} />
             </SwiperSlide>
           )
         })
       }
     </Swiper>
+    {renderSwiperControls()}
+    </>
   )
 }
 

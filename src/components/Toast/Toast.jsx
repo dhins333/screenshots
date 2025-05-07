@@ -57,9 +57,12 @@ function Toast({ state, ...props }) {
           <Typography type={TYPOGRAPHY_TYPES.body} classes="text-alert ml-4">{props.toast.content}</Typography>
         </div>
       </div>
-      <IconButton {...closeButtonProps} onPress={handleClosePress} classes="ml-4 shadow-icon-button-alert">
-        <Icon name="x" color={colors.alert} backgroundColor={colors.background} className="border border-solid border-alert"/>
-      </IconButton>
+      <IconButton {...closeButtonProps} onPress={handleClosePress} buttonClasses="ml-4 shadow-icon-button-alert" iconProps={{
+        name: "x",
+        colors: colors.alert,
+        backgroundColor: colors.background,
+        className: "border border-solid border-alert"
+      }} />
     </div>
   );
 }
