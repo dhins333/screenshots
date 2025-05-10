@@ -8,13 +8,15 @@ const Header = (props) => {
   const { renderRightContent } = props
 
   return (
-    <header className={'flex items-start justify-between fixed top-8 left-8 right-8'}>
+    <header className={'flex items-center justify-between p-8 w-full'}>
       <Link href="/">
         <Image 
           src={logo}
           width={48}
           height={48}
           alt="Website Logo"
+          className="h-12 w-12" 
+          priority={true}
         />
       </Link>
       {renderRightContent && typeof renderRightContent === 'function' && renderRightContent()} 
@@ -22,4 +24,4 @@ const Header = (props) => {
   )
 }
 
-export default Header
+export default Header 

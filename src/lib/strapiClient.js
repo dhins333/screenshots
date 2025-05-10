@@ -6,6 +6,7 @@ const strapiClient = strapi({
 })
 
 const gamesCollection = strapiClient.collection('games')
+const screenshotsCollection = strapiClient.collection()
 
 export const getGames = async () => {
   try {
@@ -13,6 +14,9 @@ export const getGames = async () => {
       fields: ['documentId', 'name', 'coverBlur', 'dominantColor'],
       populate: {
         cover: {
+          fields: ['url']
+        },
+        background: {
           fields: ['url']
         }
       }
@@ -38,7 +42,7 @@ export const getScreenshots = async (id) => {
           fields: ['url']
         },
         logo: {
-          fields: ['url']
+          fields: ['url', 'width', 'height']
         },
         background: {
           fields: ['url']
@@ -61,6 +65,39 @@ export const getScreenshots = async (id) => {
   catch {
     return {
       error: 'Fetching Screenshots Failed'
+    }
+  }
+}
+
+export const getScreenshotData = async (id) => {
+  try {
+    const screenshot = await screenshotsCollection.findOne(id, {
+      fields: ['title', 'description', 'imageBlur', 'documentId'],
+      populate: {
+        image: {
+          fields: ['url', 'width', 'height']
+        },
+        game: {
+          fields: ['documentId', 'name'],
+          populate: {
+            logo: {
+              fields: ['url', 'width', 'height']
+            },
+            background: {
+              fields: ['url']
+            }
+          }
+        }
+      }
+    })
+
+    console.log('Screenshot data fetched')
+
+    return screenshot
+  }
+  catch {
+    return {
+      error: 'Fetching Screenshot Data Failed'
     }
   }
 }

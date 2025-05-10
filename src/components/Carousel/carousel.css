@@ -3,6 +3,7 @@
   padding-top: 2rem;
   padding-bottom: 2rem;
   animation: var(--animate-slide-in-right);
+  max-width: 1800px;
 }
 
 .swiper-slide {

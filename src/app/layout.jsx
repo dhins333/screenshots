@@ -18,7 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={cn('bg-black h-screen flex flex-col', notoSans.variable)}>
+      <body className={cn(notoSans.variable, 'bg-background')}>
         {children}
         <GlobalToastRegion />
       </body>

@@ -1,10 +1,9 @@
 .gameCover {
   box-shadow: var(--color-primary) 0px 0px 14px 2px;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
   transform-style: preserve-3d
 }
 
 .gameCover:hover {
   box-shadow: var(--color-primary) 0px 0px 10px 7px;
-  transform: translateZ(100px) rotateX(-10deg) rotateY(10deg);
 }
